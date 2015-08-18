@@ -1,0 +1,19 @@
+{
+    "name": "kata-php",
+    "description": "A kata with PHP",
+    "keywords": ["PHP", "tdd", "kata"],
+    "authors": [
+        {
+            "name": "Nacho Salvador",
+            "email": "nachosalvador83@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "3.7.*@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "TennisGame": "src/"
+        }
+    }
+}
