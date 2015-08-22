@@ -17,49 +17,32 @@ class TennisGame {
     $this->player2_score = 0;
   }
 
-  public function getPlayer1() {
-    return $this->player1;
-  }
-
-  public function getPlayer2() {
-    return $this->player2;
+  public function getPlayer($player_id) {
+    $player = 'player' . $player_id;
+    return $this->$player;
   }
 
   public function hasPlayers() {
     return (isset($this->player1) && isset($this->player2));
   }
 
-  public function getPlayer1Score() {
-    return $this->player1_score;
+  public function getPlayerScore($player_id) {
+    $player_score = 'player' . $player_id . '_score';
+    return $this->$player_score;
   }
 
-  public function getPlayer2Score() {
-    return $this->player2_score;
+  public function getPlayerPoints($player_id) {
+    $player_score = 'player' . $player_id . '_score';
+    return self::POINTS[$this->$player_score];
   }
 
-  public function getPlayer1Points() {
-    return self::POINTS[$this->player1_score];
+  public function playerWinPoint($player_id) {
+    $score = $this->getPlayerScore($player_id) + 1;
+    $this->setPlayerScore($player_id, $score);
   }
 
-  public function getPlayer2Points() {
-    return self::POINTS[$this->player2_score];
-  }
-
-  public function player1WinPoint() {
-    $score = $this->getPlayer1Score() + 1;
-    $this->setPlayer1Score($score);
-  }
-
-  public function player2WinPoint() {
-    $score = $this->getPlayer2Score() + 1;
-    $this->setPlayer2Score($score);
-  }
-
-  private function setPlayer1Score($score) {
-    $this->player1_score = $score;
-  }
-
-  private function setPlayer2Score($score) {
-    $this->player2_score = $score;  
+  private function setPlayerScore($player_id, $score) {
+    $player_score = 'player' . $player_id . '_score';
+    $this->$player_score = $score;
   }
 }
