@@ -8,7 +8,7 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
   public $game;
 
   public function setUp() {
-    $this->game = new TennisGame('player1', 'player2');
+    $this->game = new TennisGame();
   }
 
   public function tearDown() {
@@ -17,7 +17,7 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
 
   public function testHasPlayers() {
     $this->assertTrue($this->game->hasPlayers(), 'The game has players');
-    $this->assertInternalType('string', $this->game->getPlayer(1), 'The player is a string name');
+    $this->assertInternalType('string', $this->game->getPlayer('player1'), 'The player is a string name');
   }
 
   public function testEachPlayerCanHaveThePointsZeroFifteenThirtyForty() {
@@ -29,9 +29,9 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     );
 
     foreach ($points as $point_name => $point) {
-      foreach (array(1, 2) as $player_id) {
-        $this->assertEquals($point, $this->game->getPlayerPoints($player_id), 'Player1 can have ' . $point_name . ' points');
-        $this->game->playerWinPoint($player_id);
+      foreach (array('player1', 'player2') as $player) {
+        $this->assertEquals($point, $this->game->getPlayerPoints($player), 'Player1 can have ' . $point_name . ' points');
+        $this->game->playerWinPoint($player);
       }
     }
   }
@@ -44,9 +44,9 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
       'fourty' => 3
     );
 
-    $player1 = $this->game->getPlayer(1);
-    $this->game->setPlayerScore($score['fourty'], 1);
-    $this->game->playerWinPoint(1);
-    $this->assertTrue($this->game->isPlayerWinGame(1), 'The game has players');
+    $player1 = $this->game->getPlayer('player1');
+    $this->game->setPlayerScore($score['fourty'], $player1);
+    $this->game->playerWinPoint($player1);
+    $this->assertTrue($this->game->isPlayerWinGame($player1), 'The player '. $player1. ' wins the game');
   }
 }
