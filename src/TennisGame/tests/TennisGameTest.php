@@ -35,4 +35,18 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
       }
     }
   }
+
+  public function testPlayerWithFortyScoreAndWinsAPointWinsTheGame() {
+    $score = array(
+      'zero' => 0,
+      'fifteen' => 1, 
+      'thirty' => 2,
+      'fourty' => 3
+    );
+
+    $player1 = $this->game->getPlayer(1);
+    $this->game->setPlayerScore($score['fourty'], 1);
+    $this->game->playerWinPoint(1);
+    $this->assertTrue($this->game->isPlayerWinGame(1), 'The game has players');
+  }
 }

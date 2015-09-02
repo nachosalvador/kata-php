@@ -41,8 +41,17 @@ class TennisGame {
     $this->setPlayerScore($player_id, $score);
   }
 
-  private function setPlayerScore($player_id, $score) {
+  public function setPlayerScore($player_id, $score) {
     $player_score = 'player' . $player_id . '_score';
     $this->$player_score = $score;
+  }
+
+  public function isPlayerWinGame($player_id) {
+    $result = FALSE;
+    if (count(self::POINTS) == 4) {
+      $result = TRUE;
+    }
+
+    return $result;
   }
 }
