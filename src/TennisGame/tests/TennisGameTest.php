@@ -52,6 +52,13 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
   public function testBothPlayersHaveFortyPointsAreDeuce() {
     $this->game->setPlayerScore('player1', self::SCORE['fourty']);
     $this->game->setPlayerScore('player2', self::SCORE['fourty']);
-    $this->assertTrue($this->game->arePlayersDeuce(), 'Both players are deuce');
+    $this->assertTrue($this->game->areBothPlayersDeuce(), 'Both players are deuce');
+  }
+
+  public function testBothPlayersAreDeuceTheWinnerOfABallHaveAdvantageAndGameBall() {
+    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
+    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->game->playerWinPoint('player1');
+    $this->assertTrue($this->game->hasPlayerAdvantageAndGameBall('player1'), 'Player1 has got advantage');
   }
 }
