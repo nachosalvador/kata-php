@@ -48,12 +48,7 @@ class TennisGame {
   }
 
   public function isPlayerWinGame($player) {
-    $result = FALSE;
-    if ($this->getPlayerScore($player) == self::WINNING_SCORE) {
-      $result = TRUE;
-    }
-
-    return $result;
+    return ($this->getPlayerScore($player) == self::WINNING_SCORE);
   }
 
   public function arePlayersDeuce() {
