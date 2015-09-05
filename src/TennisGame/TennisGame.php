@@ -5,6 +5,7 @@ namespace TennisGame;
 class TennisGame {
   const POINTS = array(0, 15, 30, 40);
   const WINNING_SCORE = 4;
+  const FOURTY_POINTS = 40;
 
   private $player1;
   private $player2;
@@ -53,5 +54,10 @@ class TennisGame {
     }
 
     return $result;
+  }
+
+  public function arePlayersDeuce() {
+    return ($this->getPlayerPoints('player1') == self::FOURTY_POINTS
+      && $this->getPlayerPoints('player2') == self::FOURTY_POINTS);
   }
 }
