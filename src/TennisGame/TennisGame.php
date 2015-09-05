@@ -4,6 +4,7 @@ namespace TennisGame;
 
 class TennisGame {
   const POINTS = array(0, 15, 30, 40);
+  const WINNING_SCORE = 4;
 
   private $player1;
   private $player2;
@@ -11,8 +12,8 @@ class TennisGame {
   private $player2_score;
 
   public function __construct() {
-    $this->player1 = 'player1';
-    $this->player2 = 'player2';
+    $this->player1 = 'Joe';
+    $this->player2 = 'Bob';
     $this->player1_score = 0;
     $this->player2_score = 0;
   }
@@ -47,7 +48,7 @@ class TennisGame {
 
   public function isPlayerWinGame($player) {
     $result = FALSE;
-    if (count(self::POINTS) == 4) {
+    if ($this->getPlayerScore($player) == self::WINNING_SCORE) {
       $result = TRUE;
     }
 

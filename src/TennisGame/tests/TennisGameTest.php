@@ -7,8 +7,22 @@ use TennisGame\TennisGame;
 class testTennisGame extends \PHPUnit_Framework_TestCase {
   public $game;
 
+  const POINTS = array(
+    'zero' => 0,
+    'fifteen' => 15, 
+    'thirty' => 30,
+    'fourty' => 40
+  );
+
+  const SCORE = array(
+    'zero' => 0,
+    'fifteen' => 1, 
+    'thirty' => 2,
+    'fourty' => 3
+  );
+
   public function setUp() {
-    $this->game = new TennisGame();
+    $this->game = new TennisGame();   
   }
 
   public function tearDown() {
@@ -21,14 +35,7 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
   }
 
   public function testEachPlayerCanHaveThePointsZeroFifteenThirtyForty() {
-    $points = array(
-      'zero' => 0,
-      'fifteen' => 15, 
-      'thirty' => 30,
-      'fourty' => 40
-    );
-
-    foreach ($points as $point_name => $point) {
+    foreach (self::POINTS as $point_name => $point) {
       foreach (array('player1', 'player2') as $player) {
         $this->assertEquals($point, $this->game->getPlayerPoints($player), 'Player1 can have ' . $point_name . ' points');
         $this->game->playerWinPoint($player);
@@ -37,16 +44,8 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
   }
 
   public function testPlayerWithFortyScoreAndWinsAPointWinsTheGame() {
-    $score = array(
-      'zero' => 0,
-      'fifteen' => 1, 
-      'thirty' => 2,
-      'fourty' => 3
-    );
-
-    $player1 = $this->game->getPlayer('player1');
-    $this->game->setPlayerScore($score['fourty'], $player1);
-    $this->game->playerWinPoint($player1);
-    $this->assertTrue($this->game->isPlayerWinGame($player1), 'The player '. $player1. ' wins the game');
+    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
+    $this->game->playerWinPoint('player1');
+    $this->assertTrue($this->game->isPlayerWinGame('player1'), 'The player "player1" wins the game');
   }
 }
