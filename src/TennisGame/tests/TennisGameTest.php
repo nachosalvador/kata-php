@@ -29,11 +29,6 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     unset($this->game);
   }
 
-  public function testHasPlayers() {
-    $this->assertTrue($this->game->hasPlayers(), 'The game has players');
-    $this->assertInternalType('string', $this->game->getPlayer('player1'), 'The player is a string name');
-  }
-
   public function testEachPlayerCanHaveThePointsZeroFifteenThirtyForty() {
     foreach (self::POINTS as $point_name => $point) {
       foreach (array('player1', 'player2') as $player) {
