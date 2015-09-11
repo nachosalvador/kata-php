@@ -24,10 +24,6 @@ class TennisGame {
     return $this->$player;
   }
 
-  public function hasPlayers() {
-    return (isset($this->player1) && isset($this->player2));
-  }
-
   public function getPlayerScore($player) {
     $player_score = $player . '_score';
     return $this->$player_score;
