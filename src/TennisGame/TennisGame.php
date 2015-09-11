@@ -6,7 +6,6 @@ class TennisGame {
   const POINTS = array(0, 15, 30, 40);
 
   const ADVANTAGE = 1;
-  const FOURTY_POINTS = 40;
 
   private $player1;
   private $player2;
@@ -66,16 +65,17 @@ class TennisGame {
   }
 
   public function areBothPlayersDeuce() {
-    return ($this->getPlayerPoints('player1') == self::FOURTY_POINTS
-      && $this->getPlayerPoints('player2') == self::FOURTY_POINTS);
+    return (($this->getPlayerScore('player1') - $this->getPlayerScore('player2')) == 0 
+      && $this->getPlayerScore('player1') >= 3 && $this->getPlayerScore('player2') >= 3);
   }
 
   public function hasPlayerAdvantageAndGameBall($player) {
+    $opposing_player = $this->getOpposingPlayer($player);
     if ($player == 'player1') {
-      return (($this->getPlayerScore($player) - $this->getPlayerScore('player2')) == self::ADVANTAGE);
+      return (($this->getPlayerScore($player) - $this->getPlayerScore($opposing_player)) == self::ADVANTAGE);
     }
     else {
-      return (($this->getPlayerScore($player) - $this->getPlayerScore('player1')) == self::ADVANTAGE);
+      return (($this->getPlayerScore($opposing_player) - $this->getPlayerScore($player)) == self::ADVANTAGE);
     }
   }
 }
