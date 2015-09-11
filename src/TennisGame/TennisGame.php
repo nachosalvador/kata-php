@@ -6,7 +6,6 @@ class TennisGame {
   const POINTS = array(0, 15, 30, 40);
 
   const ADVANTAGE = 1;
-  const WINNING_SCORE = 4;
   const FOURTY_POINTS = 40;
 
   private $player1;
@@ -36,7 +35,21 @@ class TennisGame {
 
   public function getPlayerPoints($player) {
     $player_score = $player . '_score';
+
+    if (!array_key_exists($this->$player_score, self::POINTS)) {
+      return FALSE;
+    }
+
     return self::POINTS[$this->$player_score];
+  }
+
+  public function getOpposingPlayer($player) {
+    if ($player == 'player1') {
+      return 'player2';
+    }
+    else {
+      return 'player1';
+    }
   }
 
   public function playerWinPoint($player) {
@@ -50,7 +63,10 @@ class TennisGame {
   }
 
   public function isPlayerWinGame($player) {
-    return ($this->getPlayerScore($player) == self::WINNING_SCORE);
+    $opposing_player = $this->getOpposingPlayer($player);
+    
+    return (($this->getPlayerScore($player) - $this->getPlayerScore($opposing_player) >= 2) 
+      && $this->getPlayerScore($player) >= 4);
   }
 
   public function areBothPlayersDeuce() {
@@ -58,12 +74,12 @@ class TennisGame {
       && $this->getPlayerPoints('player2') == self::FOURTY_POINTS);
   }
 
-    public function hasPlayerAdvantageAndGameBall($player) {
-      if ($player == 'player1') {
-        return (($this->getPlayerScore($player) - $this->getPlayerScore('player2')) == self::ADVANTAGE);
-      }
-      else {
-        return (($this->getPlayerScore($player) - $this->getPlayerScore('player1')) == self::ADVANTAGE);
-      }
+  public function hasPlayerAdvantageAndGameBall($player) {
+    if ($player == 'player1') {
+      return (($this->getPlayerScore($player) - $this->getPlayerScore('player2')) == self::ADVANTAGE);
     }
+    else {
+      return (($this->getPlayerScore($player) - $this->getPlayerScore('player1')) == self::ADVANTAGE);
+    }
+  }
 }
