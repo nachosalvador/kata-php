@@ -29,6 +29,11 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     unset($this->game);
   }
 
+  public function setPlayersSameScore($score) {
+    $this->game->setPlayerScore('player1', $score);
+    $this->game->setPlayerScore('player2', $score);
+  }
+
   public function testEachPlayerCanHaveThePointsZeroFifteenThirtyForty() {
     foreach (self::POINTS as $point_name => $point) {
       foreach (array('player1', 'player2') as $player) {
@@ -65,44 +70,37 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
   }
 
   public function testBothPlayersHaveFortyPointsAreDeuce() {
-    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
-    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->setPlayersSameScore(self::SCORE['fourty']);
     $this->assertTrue($this->game->arePlayersDeuce(), 'Both players are deuce');
     
-    $this->game->setPlayerScore('player1', self::SCORE['thirty']);
-    $this->game->setPlayerScore('player2', self::SCORE['thirty']);
+    $this->setPlayersSameScore(self::SCORE['thirty']);
     $this->assertFalse($this->game->arePlayersDeuce(), 'Both players are not deuce');
   }
 
   public function testBothPlayersAreDeuceTheWinnerOfABallHaveAdvantageAndGameBall() {
-    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
-    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->setPlayersSameScore(self::SCORE['fourty']);
     $this->game->playerWinPoint('player1');
     $this->assertTrue($this->game->hasPlayerAdvantageAndGameBall('player1'), 'Player1 has got advantage');
 
-    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
-    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->setPlayersSameScore(self::SCORE['fourty']);
     $this->game->playerWinPoint('player2');
     $this->assertFalse($this->game->hasPlayerAdvantageAndGameBall('player1'), 'Player1 has not got advantage');
   }
 
   public function testPlayersWithAdvantageWinsAPointWinsTheGame() {
-    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
-    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->setPlayersSameScore(self::SCORE['fourty']);
     $this->game->playerWinPoint('player1');
     $this->game->playerWinPoint('player1');
     $this->assertTrue($this->game->isPlayerWinGame('player1'), 'The player1 wins the game');
 
-    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
-    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->setPlayersSameScore(self::SCORE['fourty']);
     $this->game->playerWinPoint('player1');
     $this->game->playerWinPoint('player2');
     $this->assertFalse($this->game->isPlayerWinGame('player1'), 'The player1 does not win the game');
   }
 
     public function testPlayerWithoutAdvantageWinsPointBothPlayersAreDeuce() {
-    $this->game->setPlayerScore('player1', self::SCORE['fourty']);
-    $this->game->setPlayerScore('player2', self::SCORE['fourty']);
+    $this->setPlayersSameScore(self::SCORE['fourty']);
     $this->game->playerWinPoint('player1');
     $this->game->playerWinPoint('player2');
     $this->assertTrue($this->game->arePlayersDeuce(), 'Both players are deuce');  
