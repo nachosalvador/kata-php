@@ -4,8 +4,15 @@ namespace TennisGame;
 
 class TennisGame {
   const POINTS = array(0, 15, 30, 40);
+  const SCORE = array(
+    'zero' => 0,
+    'fifteen' => 1, 
+    'thirty' => 2,
+    'fourty' => 3
+  );
 
   const ADVANTAGE = 1;
+  const WIN = 2;
 
   private $player1;
   private $player2;
@@ -60,13 +67,13 @@ class TennisGame {
   public function isPlayerWinGame($player) {
     $opposing_player = $this->getOpposingPlayer($player);
     
-    return (($this->getPlayerScore($player) - $this->getPlayerScore($opposing_player) >= 2) 
+    return (($this->getPlayerScore($player) - $this->getPlayerScore($opposing_player) >= self::WIN) 
       && $this->getPlayerScore($player) >= 4);
   }
 
   public function areBothPlayersDeuce() {
     return (($this->getPlayerScore('player1') - $this->getPlayerScore('player2')) == 0 
-      && $this->getPlayerScore('player1') >= 3 && $this->getPlayerScore('player2') >= 3);
+      && $this->getPlayerScore('player1') >= self::SCORE['fourty'] && $this->getPlayerScore('player2') >= self::SCORE['fourty']);
   }
 
   public function hasPlayerAdvantageAndGameBall($player) {
