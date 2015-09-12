@@ -75,7 +75,7 @@ class TennisGame {
       && $this->getPlayerScore($player) >= 4);
   }
 
-  public function areBothPlayersDeuce() {
+  public function arePlayersDeuce() {
     return (($this->getPlayerScore('player1') - $this->getPlayerScore('player2')) == 0 
       && $this->getPlayerScore('player1') >= self::SCORE['fourty'] && $this->getPlayerScore('player2') >= self::SCORE['fourty']);
   }
