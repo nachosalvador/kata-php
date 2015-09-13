@@ -8,14 +8,14 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
   public $game;
 
   const POINTS = array(
-    'zero' => 0,
+    'love' => 0,
     'fifteen' => 15, 
     'thirty' => 30,
     'fourty' => 40
   );
 
   const SCORE = array(
-    'zero' => 0,
+    'love' => 0,
     'fifteen' => 1, 
     'thirty' => 2,
     'fourty' => 3
@@ -116,5 +116,16 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
       $this->game->playerWinPoint('player2');
     }
     $this->assertFalse($this->game->isPlayerWinGame('player1'), 'The player1 does not win the game');
+  }
+
+  public function testEachScoreGameHasDescribedAsLoveFifteenThirtyForty() {
+    foreach (self::SCORE as $key => $value) {
+      $this->assertTrue(array_key_exists($key, TennisGame::SCORE), ucfirst($key) . 'is a game score');
+    }
+
+    $fake_scores = array('one', 'three', 'six', 'ten', 'sixteen',  'thirtytwo', 'fourtyone');
+    foreach ($fake_scores as $fake_score) {
+      $this->assertFalse(array_key_exists($fake_score, TennisGame::SCORE), ucfirst($fake_score) . 'is not a game score');
+    }
   }
 }
