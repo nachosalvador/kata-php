@@ -26,23 +26,9 @@ class TennisGame {
     $this->player2_score = 0;
   }
 
-  public function getPlayer($player) {
-    return $this->$player;
-  }
-
   public function getPlayerScore($player) {
     $player_score = $player . '_score';
     return $this->$player_score;
-  }
-
-  public function getPlayerPoints($player) {
-    $player_score = $player . '_score';
-
-    if (!array_key_exists($this->$player_score, self::POINTS)) {
-      return FALSE;
-    }
-
-    return self::POINTS[$this->$player_score];
   }
 
   public function getOpposingPlayer($player) {
