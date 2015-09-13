@@ -143,4 +143,13 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     }
     $this->assertFalse($this->game->arePlayersDeuce(), 'Both players are not deuce');
   }
+
+  public function testEachPlayerHasAtLeastThreePointsAndAPlayerHasOnMorePointThanOpponentGameScoreIsAdvantageForPlayerInTheLead() {
+    $this->setPlayersSameScore(3);
+    $this->game->playerWinPoint('player1');
+    $this->assertTrue($this->game->hasPlayerAdvantageAndGameBall('player1'), 'Player1 has got advantage');
+
+    $this->setPlayersSameScore(3);
+    $this->assertFalse($this->game->hasPlayerAdvantageAndGameBall('player1'), 'Player1 has not got advantage');
+  }
 }
