@@ -106,13 +106,13 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     $this->assertTrue($this->game->arePlayersDeuce(), 'Both players are deuce');  
   }
 
-  public function testGameIsWonByFirstPlayerToHaveAtLeastFourPointsInTotalAndAtLeastTwoPointMoreTThanOpponent(){
-    for ($i = 0; $i <= 4; $i++) {
+  public function testGameIsWonByFirstPlayerToHaveAtLeastFourPointsInTotalAndAtLeastTwoPointMoreTThanOpponent() {
+    for ($i = 1; $i <= 4; $i++) {
       $this->game->playerWinPoint('player1');
     }
     $this->assertTrue($this->game->isPlayerWinGame('player1'), 'The player1 wins the game');
 
-    for ($i = 0; $i <= 3; $i++) {
+    for ($i = 1; $i <= 3; $i++) {
       $this->game->playerWinPoint('player2');
     }
     $this->assertFalse($this->game->isPlayerWinGame('player1'), 'The player1 does not win the game');
@@ -127,5 +127,20 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     foreach ($fake_scores as $fake_score) {
       $this->assertFalse(array_key_exists($fake_score, TennisGame::SCORE), ucfirst($fake_score) . 'is not a game score');
     }
+  }
+
+  public function testEachPlayerHasThreeOrMorePointsAndPlayersScoreAreEqualsSoGameScoreIsDeuce() {
+    for ($i = 1; $i <= 8; $i++) {
+      $this->game->playerWinPoint('player1');
+      $this->game->playerWinPoint('player2');
+    }
+    $this->assertTrue($this->game->arePlayersDeuce(), 'Both players are deuce');
+
+    $this->setPlayersSameScore(0);
+    for ($i = 1; $i <= 2; $i++) {
+      $this->game->playerWinPoint('player1');
+      $this->game->playerWinPoint('player2');
+    }
+    $this->assertFalse($this->game->arePlayersDeuce(), 'Both players are not deuce');
   }
 }
