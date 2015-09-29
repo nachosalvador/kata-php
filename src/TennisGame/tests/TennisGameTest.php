@@ -29,18 +29,25 @@ class testTennisGame extends \PHPUnit_Framework_TestCase {
     unset($this->game);
   }
 
-  public function setPlayersSameScore($score) {
+  private function setPlayersScores($player1_score, $player2_score) {
+    $this->game->setPlayerScore('player1', $player1_score);
+    $this->game->setPlayerScore('player2', $player2_score);
+  } 
+
+  private function setPlayersSameScore($score) {
     $this->game->setPlayerScore('player1', $score);
     $this->game->setPlayerScore('player2', $score);
   } 
 
   public function testGameIsWonByFirstPlayerToHaveAtLeastFourPointsInTotalAndAtLeastTwoPointMoreTThanOpponent() {
-    $this->game->setPlayerScore('player1', 4);
-    $this->game->setPlayerScore('player2', 2);
+    $player1_score = 4;
+    $player2_score = 2;
+    $this->setPlayersScores($player1_score, $player2_score);
     $this->assertTrue($this->game->isPlayerWinGame('player1'), 'The player1 wins the game');
 
-    $this->game->setPlayerScore('player1', 4);
-    $this->game->setPlayerScore('player2', 3);
+    $player1_score = 4;
+    $player2_score = 3;
+    $this->setPlayersScores($player1_score, $player2_score);
     $this->assertFalse($this->game->isPlayerWinGame('player1'), 'The player1 does not win the game');
   }
 
