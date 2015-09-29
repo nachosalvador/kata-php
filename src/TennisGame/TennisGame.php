@@ -31,17 +31,8 @@ class TennisGame {
     return $this->$player_score;
   }
 
-  public function getOpposingPlayer($player) {
-    if ($player == 'player1') {
-      return 'player2';
-    }
-    else {
-      return 'player1';
-    }
-  }
-
-  public function getPlayersScoreDifference($player1, $player2) {
-    return ($this->getPlayerScore($player1) - $this->getPlayerScore($player2));
+  private function getPlayersScoreDifference() {
+    return ($this->getPlayerScore("player1") - $this->getPlayerScore("player2"));
   }
 
   public function playerWinPoint($player) {
@@ -55,20 +46,17 @@ class TennisGame {
   }
 
   public function isPlayerWinGame($player) {
-    $opposing_player = $this->getOpposingPlayer($player);
-    
-    return (($this->getPlayersScoreDifference($player, $opposing_player) >= self::WIN) 
+    return (($this->getPlayersScoreDifference() >= self::WIN) 
       && $this->getPlayerScore($player) >= 4);
   }
 
   public function arePlayersDeuce() {
     return (($this->getPlayerScore('player1') - $this->getPlayerScore('player2')) == 0 
-      && $this->getPlayerScore('player1') >= self::SCORE['fourty'] && $this->getPlayerScore('player2') >= self::SCORE['fourty']);
+      && $this->getPlayerScore('player1') >= self::SCORE['fourty'] 
+      && $this->getPlayerScore('player2') >= self::SCORE['fourty']);
   }
 
-  public function hasPlayerAdvantageAndGameBall($player) {
-    $opposing_player = $this->getOpposingPlayer($player);
-    
-    return ($this->getPlayersScoreDifference($player, $opposing_player) == self::ADVANTAGE);
+  public function hasPlayerAdvantageAndGameBall($player) {   
+    return ($this->getPlayersScoreDifference() == self::ADVANTAGE);
   }
 }
