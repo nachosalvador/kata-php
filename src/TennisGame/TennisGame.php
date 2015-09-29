@@ -3,7 +3,6 @@
 namespace TennisGame;
 
 class TennisGame {
-  const POINTS = array(0, 15, 30, 40);
   const SCORE = array(
     'love' => 0,
     'fifteen' => 1, 
