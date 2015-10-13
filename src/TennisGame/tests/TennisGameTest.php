@@ -7,13 +7,6 @@ use TennisGame\TennisGame;
 class testTennisGame extends \PHPUnit_Framework_TestCase {
   public $game;
 
-  const POINTS = array(
-    'love' => 0,
-    'fifteen' => 15, 
-    'thirty' => 30,
-    'fourty' => 40
-  );
-
   const SCORE = array(
     'love' => 0,
     'fifteen' => 1, 
