@@ -13,7 +13,8 @@
     },
     "autoload": {
         "psr-0": {
-            "TennisGame": "src/"
+            "TennisGame": "src/",
+            "TradingCardGame": "src/"
         }
     }
 }
