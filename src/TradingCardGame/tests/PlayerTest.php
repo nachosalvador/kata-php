@@ -5,8 +5,10 @@ namespace TradingCardGame\Tests;
 use TradingCardGame\Player;
 
 class testPlayer extends \PHPUnit_Framework_TestCase {
-  const START_HEATH = 30;
-  const START_MANA = 0;
+  const INIT_HEATH = 30;
+  const INIT_MANA = 0;
+  const INIT_HAND_NUMBER_CARDS = 3;
+  const INIT_NUMBER_CARDS = 20;
 
   public $player1;
   public $player2;
@@ -21,12 +23,12 @@ class testPlayer extends \PHPUnit_Framework_TestCase {
     unset($this->player2);
   }
 
-  public function testEachPlayerStartsAGameWithThirtyOfHealthAndZeroOfMana() {
-    $this->assertEquals($this->player1->getHealth(), self::START_HEATH);
-    $this->assertEquals($this->player2->getMana(), self::START_MANA);
+  public function testEachPlayerINITsAGameWithThirtyOfHealthAndZeroOfMana() {
+    $this->assertEquals($this->player1->getHealth(), self::INIT_HEATH);
+    $this->assertEquals($this->player2->getMana(), self::INIT_MANA);
   } 
 
-  public function testEachPlayerStartsWithATwentyCardsDeck() {
+  public function testEachPlayerINITsWithATwentyCardsDeck() {
     $value_mana_cards = array(0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8);
 
     $this->assertEquals($this->player1->getNumberOfCardsInDeck(), count($value_mana_cards));
@@ -34,10 +36,10 @@ class testPlayer extends \PHPUnit_Framework_TestCase {
   }
 
   public function testEachPlayerHasInitialHandWithThreeCardsFromHisDeck() {
-    $this->assertEquals(count($this->player1->getHand()), 3);
-    $this->assertEquals($this->player1->getNumberOfCardsInDeck(), 17);
+    $this->assertEquals(count($this->player1->getHand()), self::INIT_HAND_NUMBER_CARDS);
+    $this->assertEquals($this->player1->getNumberOfCardsInDeck(), self::INIT_NUMBER_CARDS - self::INIT_HAND_NUMBER_CARDS);
 
-    $this->assertEquals(count($this->player2->getHand()), 3);
-    $this->assertEquals($this->player2->getNumberOfCardsInDeck(), 17);
+    $this->assertEquals(count($this->player2->getHand()), self::INIT_HAND_NUMBER_CARDS);
+    $this->assertEquals($this->player2->getNumberOfCardsInDeck(), self::INIT_NUMBER_CARDS - self::INIT_HAND_NUMBER_CARDS);
   }
 }
