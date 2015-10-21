@@ -24,6 +24,6 @@ class Player {
   }
 
   public function getNumberOfCardsInDeck() {
-    return count($this->deck->getCards());
+    return $this->deck->getNumberOfCards();
   }
 }
