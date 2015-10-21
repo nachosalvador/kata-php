@@ -23,12 +23,12 @@ class testPlayer extends \PHPUnit_Framework_TestCase {
     unset($this->player2);
   }
 
-  public function testEachPlayerINITsAGameWithThirtyOfHealthAndZeroOfMana() {
+  public function testEachPlayerStartsAGameWithThirtyOfHealthAndZeroOfMana() {
     $this->assertEquals($this->player1->getHealth(), self::INIT_HEATH);
     $this->assertEquals($this->player2->getMana(), self::INIT_MANA);
   } 
 
-  public function testEachPlayerINITsWithATwentyCardsDeck() {
+  public function testEachPlayerStartsWithATwentyCardsDeck() {
     $value_mana_cards = array(0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8);
 
     $this->assertEquals($this->player1->getNumberOfCardsInDeck(), count($value_mana_cards));

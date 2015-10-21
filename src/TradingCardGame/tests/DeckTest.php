@@ -18,7 +18,7 @@ class testDeck extends \PHPUnit_Framework_TestCase {
     unset($this->deck);
   }
 
-  public function testDeckTwentyCards() {
+  public function testDeckHasTwentyCards() {
     $this->assertEquals($this->deck->getNumberOfCards(), self::INIT_NUMBER_CARDS);
   }
 
