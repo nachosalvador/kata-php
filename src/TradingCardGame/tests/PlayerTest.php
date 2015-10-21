@@ -32,4 +32,12 @@ class testPlayer extends \PHPUnit_Framework_TestCase {
     $this->assertEquals($this->player1->getNumberOfCardsInDeck(), count($value_mana_cards));
     $this->assertEquals($this->player2->getNumberOfCardsInDeck(), count($value_mana_cards));
   }
+
+  public function testEachPlayerHasInitialHandWithThreeCardsFromHisDeck() {
+    $this->assertEquals(count($this->player1->getHand()), 3);
+    $this->assertEquals($this->player1->getNumberOfCardsInDeck(), 17);
+
+    $this->assertEquals(count($this->player2->getHand()), 3);
+    $this->assertEquals($this->player2->getNumberOfCardsInDeck(), 17);
+  }
 }
