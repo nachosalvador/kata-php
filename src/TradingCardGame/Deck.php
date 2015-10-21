@@ -18,9 +18,6 @@ class Deck {
   }
 
   public function extractCard($key) {
-    // $extracted_card = $this->cards_as_mana_values[$key];
     unset($this->cards_as_mana_values[$key]);
-
-    // return $extracted_card;
   }
 }
