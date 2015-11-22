@@ -1,8 +1,8 @@
 <?php
 
-namespace TradingCardGame\Tests;
+namespace Kata\Tests\TennisGame;
 
-use TradingCardGame\Player;
+use Kata\TradingCardGame\Player;
 
 class testPlayer extends \PHPUnit_Framework_TestCase {
   const INIT_HEATH = 30;

@@ -1,8 +1,8 @@
 <?php
 
-namespace TennisGame\Tests;
+namespace Kata\Tests\TennisGame;
 
-use TennisGame\TennisGame;
+use Kata\TennisGame\TennisGame;
 
 class testTennisGame extends \PHPUnit_Framework_TestCase {
   public $game;

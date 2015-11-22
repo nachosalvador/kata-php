@@ -12,9 +12,8 @@
         "phpunit/phpunit": "3.7.*@dev"
     },
     "autoload": {
-        "psr-0": {
-            "TennisGame": "src/",
-            "TradingCardGame": "src/"
+        "psr-4": {
+            "Kata\\": "src/"
         }
     }
 }

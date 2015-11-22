@@ -1,6 +1,6 @@
 <?php
 
-namespace TradingCardGame;
+namespace Kata\TradingCardGame;
 
 class Deck {
   private $cards_as_mana_values;

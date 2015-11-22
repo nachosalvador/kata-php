@@ -1,8 +1,8 @@
 <?php
 
-namespace TradingCardGame\Tests;
+namespace Kata\TradingCardGame\Tests;
 
-use TradingCardGame\Deck;
+use Kata\TradingCardGame\Deck;
 
 class testDeck extends \PHPUnit_Framework_TestCase {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace TennisGame;
+namespace Kata\TennisGame;
 
 class TennisGame {
   const SCORE = array(

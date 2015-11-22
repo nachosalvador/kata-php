@@ -1,8 +1,6 @@
 <?php
 
-namespace TradingCardGame;
-
-use TradingCardGame\Deck;
+namespace Kata\TradingCardGame;
 
 class Player {
   private $health;
