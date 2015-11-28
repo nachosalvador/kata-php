@@ -11,8 +11,17 @@
         stopOnFailure="false"
         syntaxCheck="false">
     <testsuites>
-        <testsuite name="Kata Test Suite">
+        <testsuite name="Kata">
             <directory suffix=".php">./tests/</directory>
+        </testsuite>
+        <testsuite name="TennisGame">
+            <directory suffix=".php">./tests/TennisGame/</directory>
+        </testsuite>
+        <testsuite name="TradingCardGame">
+            <directory suffix=".php">./tests/TradingCardGame/</directory>
+        </testsuite>
+        <testsuite name="GameOfLife">
+            <directory suffix=".php">./tests/GameOfLife/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
