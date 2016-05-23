@@ -13,7 +13,7 @@ class Basket {
   	$this->books = [];
   }
 
-  public function buy(Book $book) {
+  public function add(Book $book) {
     $this->books[] = $book;
   }
 
