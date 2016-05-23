@@ -12,16 +12,22 @@
         syntaxCheck="false">
     <testsuites>
         <testsuite name="Kata">
-            <directory suffix=".php">./tests/</directory>
-        </testsuite>
-        <testsuite name="TennisGame">
-            <directory suffix=".php">./tests/TennisGame/</directory>
-        </testsuite>
-        <testsuite name="TradingCardGame">
-            <directory suffix=".php">./tests/TradingCardGame/</directory>
+            <directory>./tests/</directory>
         </testsuite>
         <testsuite name="GameOfLife">
-            <directory suffix=".php">./tests/GameOfLife/</directory>
+            <directory>./tests/GameOfLife/</directory>
+        </testsuite>
+        <testsuite name="MathsGame">
+            <directory>./tests/MathsGame/</directory>
+        </testsuite>
+        <testsuite name="Potter">
+            <directory>./tests/Potter/</directory>
+        </testsuite>
+        <testsuite name="TennisGame">
+            <directory>./tests/TennisGame/</directory>
+        </testsuite>
+        <testsuite name="TradingCardGame">
+            <directory>./tests/TradingCardGame/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
