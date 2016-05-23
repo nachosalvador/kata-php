@@ -13,7 +13,7 @@ class Order {
   	$this->books = [];
   }
 
-  public function buyBook(Book $book) {
+  public function buy(Book $book) {
     $this->books[] = $book;
   }
 
