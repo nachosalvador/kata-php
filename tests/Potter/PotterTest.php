@@ -3,19 +3,19 @@
 namespace Kata\Tests\Potter;
 
 use Kata\Potter\Book;
-use Kata\Potter\Order;
+use Kata\Potter\Basket;
 
 class testCell extends \PHPUnit_Framework_TestCase {
 
   public function testOneCopyOfAnyBookCostsEight() {
-    $order = new Order();
+    $order = new Basket();
 
     $order->buy(new Book(rand(1, 5)));
     $this->assertEquals($order->getAmount(), 8, 'One copy of any of the five books costs 8 EUR.');
   }
 
   public function testSimpleDiscounts() {
-    $order = new Order();
+    $order = new Basket();
 
     $order->buy(new Book(1));
     $order->buy(new Book(2));	

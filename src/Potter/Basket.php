@@ -4,7 +4,7 @@ namespace Kata\Potter;
 
 use Kata\Potter\Book;
 
-class Order {
+class Basket {
   const DISCOUNTS = [1, 0.95, 0.90, 0.80, 0.75];
 
   private $books;
