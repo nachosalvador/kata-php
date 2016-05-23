@@ -5,7 +5,7 @@ namespace Kata\Potter;
 class Book {
   const PRICE = 8;
 
-  private $serie;
+  public $serie;
 
   public function __construct($serie) {
     $this->serie = $serie;
