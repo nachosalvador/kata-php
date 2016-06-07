@@ -7,39 +7,35 @@ use Kata\Potter\Basket;
 
 class testCell extends \PHPUnit_Framework_TestCase {
 
-  public function testOneCopyOfAnyBookCostsEight() {
-    $order = new Basket();
+  const MIN_BOOK_ID = 1;
+  const MAX_BOOK_ID = 5;
 
-    $order->add(new Book(rand(1, 5)));
-    $this->assertEquals($order->getAmount(), 8, 'One copy of any of the five books costs 8 EUR.');
+  public $order;
+
+  public function setUp() {
+    $this->order = new Basket();
+  }
+
+  public function testOneCopyOfAnyBookCostsEight() {
+    for ($i = self::MIN_BOOK_ID; $i <= self::MAX_BOOK_ID; $i++) {
+      $this->order->reset();
+      $this->order->add(new Book($i));
+      $this->assertEquals($this->order->getAmount(), Book::PRICE, 'One copy of book ' . $i . ' of the five books costs 8 EUR.');
+    }
   }
 
   public function testSimpleDiscounts() {
-    $order = new Basket();
+    for ($i = 2; $i <= 5; $i++) {
+      $this->order->reset();
 
-    $order->add(new Book(1));
-    $order->add(new Book(2));	
-    $this->assertEquals($order->getAmount(), 8 * 2 * 0.95, 'One copy of two different books costs 8 * 2 * 0.95 EUR.');
-
-    $order->reset();
-    $order->add(new Book(1));
-    $order->add(new Book(2));
-    $order->add(new Book(3));
-    $this->assertEquals($order->getAmount(), 8 * 3 * 0.90, 'One copy of three different books costs 8 * 3 * 0.90 EUR.');
-
-    $order->reset();
-    $order->add(new Book(1));
-    $order->add(new Book(2));
-    $order->add(new Book(3));
-    $order->add(new Book(4));
-    $this->assertEquals($order->getAmount(), 8 * 4 * 0.80, 'One copy of four different books costs 8 * 4 * 0.80 EUR.');
-
-    $order->reset();
-    $order->add(new Book(1));
-    $order->add(new Book(2));
-    $order->add(new Book(3));
-    $order->add(new Book(4));
-    $order->add(new Book(5));
-    $this->assertEquals($order->getAmount(), 8 * 5 * 0.75, 'One copy of five different books costs 8 * 5 * 0.75 EUR.');
+      for ($j = 1; $j <= $i; $j++) {
+        $this->order->add(new Book(1));
+      }
+      $this->assertEquals(
+        $this->order->getAmount(),
+        Book::PRICE * $i * Basket::DISCOUNTS[$i],
+        'One copy of ' . $i . ' different books costs ' . Book::PRICE . ' * ' . $i . ' * ' . Basket::DISCOUNTS[$i] . ' EUR.'
+      );
+    }
   }
 }

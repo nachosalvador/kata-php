@@ -5,7 +5,7 @@ namespace Kata\Potter;
 use Kata\Potter\Book;
 
 class Basket {
-  const DISCOUNTS = [1, 0.95, 0.90, 0.80, 0.75];
+  const DISCOUNTS = [1 => 1, 2 => 0.95, 3 => 0.90, 4 => 0.80, 5 => 0.75];
 
   private $books;
 
@@ -34,6 +34,6 @@ class Basket {
   }
 
   private function getDiscount() {
-  	return self::DISCOUNTS[count($this->books) - 1];
+  	return self::DISCOUNTS[count($this->books)];
   }
 }
