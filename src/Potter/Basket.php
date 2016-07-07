@@ -5,12 +5,12 @@ namespace Kata\Potter;
 use Kata\Potter\Book;
 
 class Basket {
-  const DISCOUNTS = [1 => 1, 2 => 0.95, 3 => 0.90, 4 => 0.80, 5 => 0.75];
+  const DISCOUNTS = [0 => 0, 1 => 1, 2 => 0.95, 3 => 0.90, 4 => 0.80, 5 => 0.75];
 
   private $books;
 
   public function __construct() {
-  	$this->books = [];
+    $this->books = [];
   }
 
   public function add(Book $book) {
@@ -18,22 +18,38 @@ class Basket {
   }
 
   public function getAmount() {
-  	$amount = 0;
+    $books = $this->getSerieAndQuantityOfBooks();
+    $amount = sizeof($books) * Book::PRICE * $this->getDiscount($books);
 
-  	foreach ($this->books as $book) {
-  	  $amount += $book->getPrice();
-  	}
 
-  	$amount = $amount * $this->getDiscount();
+    foreach ($books as $serie => $book) {
+      $book--;
+
+      if ($book == 0) {
+        unset($books[$serie]);
+      }
+    }
+
+    $amount += sizeof($books) * Book::PRICE * $this->getDiscount($books);
 
     return $amount; 
   }
 
   public function reset() {
-  	$this->books = [];
+    $this->books = [];
   }
 
-  private function getDiscount() {
-  	return self::DISCOUNTS[count($this->books)];
+  private function getDiscount($books) {
+    return self::DISCOUNTS[count($books)];
+  }
+
+  private function getSerieAndQuantityOfBooks() {
+    $result = []; 
+
+    foreach ($this->books as $book) {
+      $result[] = $book->serie;
+    }
+
+    return array_count_values($result);
   }
 }

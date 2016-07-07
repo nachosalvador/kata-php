@@ -14,6 +14,7 @@ class testCell extends \PHPUnit_Framework_TestCase {
 
   public function setUp() {
     $this->basket = new Basket();
+    $this->basket->reset();
   }
 
   public function testOneCopyOfAnyBookCostsEight() {
@@ -29,7 +30,6 @@ class testCell extends \PHPUnit_Framework_TestCase {
   }
 
   public function testSimpleDiscounts() {
-    $this->basket->reset();
     $this->basket->add(new Book(1));
     $this->basket->add(new Book(2));
     $this->assertEquals(
@@ -57,5 +57,28 @@ class testCell extends \PHPUnit_Framework_TestCase {
       8 * 5 * 0.75,
       'One copy of 5 different books costs 8 * 5 * 0.75 EUR.'
     );
+  }
+
+  public function testSeveralDiscounts() {
+    $this->addBookSeriesToBasket([1, 1, 2]);
+    $this->assertEquals($this->basket->getAmount(), 8 + (8 * 2 * 0.95));
+
+    $this->basket->reset();
+    $this->addBookSeriesToBasket([1, 1, 2, 2]);
+    $this->assertEquals($this->basket->getAmount(), 2 * (8 * 2 * 0.95));
+
+    $this->basket->reset();
+    $this->addBookSeriesToBasket([1, 2, 2, 3, 3, 4]);
+    $this->assertEquals($this->basket->getAmount(), (8 * 4 * 0.8) + (8 * 2 * 0.95));
+
+    $this->basket->reset();
+    $this->addBookSeriesToBasket([1, 2, 2, 3, 4, 5]);
+    $this->assertEquals($this->basket->getAmount(), 8 + (8 * 5 * 0.75));
+  }
+
+  private function addBookSeriesToBasket($book_series) {
+    foreach ($book_series as $book_serie) {
+      $this->basket->add(new Book($book_serie));
+    }
   }
 }

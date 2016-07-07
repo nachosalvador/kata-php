@@ -10,9 +10,4 @@ class Book {
   public function __construct($serie) {
     $this->serie = $serie;
   }
-
-  public function getPrice() {
-    return self::PRICE;
-  }
-
 }
