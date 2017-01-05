@@ -17,11 +17,11 @@
         <testsuite name="GameOfLife">
             <directory>./tests/GameOfLife/</directory>
         </testsuite>
-        <testsuite name="MathsGame">
-            <directory>./tests/MathsGame/</directory>
-        </testsuite>
         <testsuite name="Potter">
             <directory>./tests/Potter/</directory>
+        </testsuite>
+        <testsuite name="RomanNumerals">
+            <directory>./tests/RomanNumerals/</directory>
         </testsuite>
         <testsuite name="TennisGame">
             <directory>./tests/TennisGame/</directory>
