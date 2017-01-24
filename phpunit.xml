@@ -14,9 +14,6 @@
         <testsuite name="Kata">
             <directory>./tests/</directory>
         </testsuite>
-        <testsuite name="GameOfLife">
-            <directory>./tests/GameOfLife/</directory>
-        </testsuite>
         <testsuite name="Potter">
             <directory>./tests/Potter/</directory>
         </testsuite>

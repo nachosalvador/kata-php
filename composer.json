@@ -1,6 +1,6 @@
 {
     "name": "kata-php",
-    "description": "A kata with PHP",
+    "description": "It is a collection of katas.",
     "keywords": ["PHP", "tdd", "kata"],
     "authors": [
         {
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "5.5.*"
     },
     "autoload": {
         "psr-4": {
