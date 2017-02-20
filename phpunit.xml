@@ -26,6 +26,9 @@
         <testsuite name="RomanNumerals">
             <directory>./tests/RomanNumerals/</directory>
         </testsuite>
+        <testsuite name="StringCalculator">
+            <directory>./tests/StringCalculator/</directory>
+        </testsuite>
         <testsuite name="TennisGame">
             <directory>./tests/TennisGame/</directory>
         </testsuite>
