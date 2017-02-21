@@ -2,6 +2,7 @@
     "name": "kata-php",
     "description": "It is a collection of katas.",
     "keywords": ["PHP", "tdd", "kata"],
+    "license": "AGPL-3.0",
     "authors": [
         {
             "name": "Nacho Salvador",
